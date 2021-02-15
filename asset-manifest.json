@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/RafalCer/react-xstate-colourchanger/static/css/main.26955afe.chunk.css",
-    "main.js": "/RafalCer/react-xstate-colourchanger/static/js/main.310ef46c.chunk.js",
-    "main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/main.310ef46c.chunk.js.map",
-    "runtime-main.js": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.c3151dc8.js",
-    "runtime-main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.c3151dc8.js.map",
-    "static/js/2.9042465e.chunk.js": "/RafalCer/react-xstate-colourchanger/static/js/2.9042465e.chunk.js",
-    "static/js/2.9042465e.chunk.js.map": "/RafalCer/react-xstate-colourchanger/static/js/2.9042465e.chunk.js.map",
+    "main.css": "/RafalCer/react-xstate-colourchanger/static/css/main.a5a253b5.chunk.css",
+    "main.js": "/RafalCer/react-xstate-colourchanger/static/js/main.f721de23.chunk.js",
+    "main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/main.f721de23.chunk.js.map",
+    "runtime-main.js": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.935a5911.js",
+    "runtime-main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.935a5911.js.map",
+    "static/js/2.e331e4f6.chunk.js": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js",
+    "static/js/2.e331e4f6.chunk.js.map": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js.map",
     "index.html": "/RafalCer/react-xstate-colourchanger/index.html",
-    "static/css/main.26955afe.chunk.css.map": "/RafalCer/react-xstate-colourchanger/static/css/main.26955afe.chunk.css.map",
-    "static/js/2.9042465e.chunk.js.LICENSE.txt": "/RafalCer/react-xstate-colourchanger/static/js/2.9042465e.chunk.js.LICENSE.txt"
+    "static/css/main.a5a253b5.chunk.css.map": "/RafalCer/react-xstate-colourchanger/static/css/main.a5a253b5.chunk.css.map",
+    "static/js/2.e331e4f6.chunk.js.LICENSE.txt": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c3151dc8.js",
-    "static/js/2.9042465e.chunk.js",
-    "static/css/main.26955afe.chunk.css",
-    "static/js/main.310ef46c.chunk.js"
+    "static/js/runtime-main.935a5911.js",
+    "static/js/2.e331e4f6.chunk.js",
+    "static/css/main.a5a253b5.chunk.css",
+    "static/js/main.f721de23.chunk.js"
   ]
 }
