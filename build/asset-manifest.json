@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/RafalCer/react-xstate-colourchanger/static/css/main.a5a253b5.chunk.css",
+    "main.js": "/RafalCer/react-xstate-colourchanger/static/js/main.aa36c3fe.chunk.js",
+    "main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/main.aa36c3fe.chunk.js.map",
+    "runtime-main.js": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.935a5911.js",
+    "runtime-main.js.map": "/RafalCer/react-xstate-colourchanger/static/js/runtime-main.935a5911.js.map",
+    "static/js/2.e331e4f6.chunk.js": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js",
+    "static/js/2.e331e4f6.chunk.js.map": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js.map",
+    "index.html": "/RafalCer/react-xstate-colourchanger/index.html",
+    "static/css/main.a5a253b5.chunk.css.map": "/RafalCer/react-xstate-colourchanger/static/css/main.a5a253b5.chunk.css.map",
+    "static/js/2.e331e4f6.chunk.js.LICENSE.txt": "/RafalCer/react-xstate-colourchanger/static/js/2.e331e4f6.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.935a5911.js",
+    "static/js/2.e331e4f6.chunk.js",
+    "static/css/main.a5a253b5.chunk.css",
+    "static/js/main.aa36c3fe.chunk.js"
+  ]
+}
