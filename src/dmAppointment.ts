@@ -22,12 +22,18 @@ const nluRequest = (text: string) =>
 
 const grammar: { [index: string]: { person?: string, day?: string, time?: string } } = {
     "John": { person: "John Appleseed" },
+    "John Appleseed": { person: "John Appleseed" },
     "Jack": { person: "Jack Jackson" },
+    "Jack Jackson": { person: "Jack Jackson" },
     "Liana": { person: "Liana Jelena" },
+    "Liana Jelena": { person: "Liana Jelena" },
     "Natalie": { person: "Natalie Portman" },
+    "Natalie Portman": { person: "Natalie Portman" },
     "Bruce": { person: "Bruce W" },
     "Bob": { person: "Bob the builder" },
-    "Shrek": { person: "Shrek" },
+    "Bob the builder": { person: "Bob the builder" },
+    "Shrek": { person: "Shrek from the swamp" },
+    "Shrek from the swap": { person: "Shrek" },
 
     "on Monday": {day: "Monday" },
     "Monday": {day: "Monday" },
@@ -45,15 +51,49 @@ const grammar: { [index: string]: { person?: string, day?: string, time?: string
     "Sunday": {day: "Sunday" },
 
     "10": { time: "10:00" },
+    "at 10": { time: "10:00" },
+    "ten": { time: "10:00" },
+    "at ten": { time: "10:00" },
     "11": { time: "11:00" },
+    "eleven": { time: "11:00" },
+    "at 11": { time: "11:00" },
+    "at eleven": { time: "11:00" },
     "12": { time: "12:00" },
+    "twelve": { time: "12:00" },
+    "at 12": { time: "12:00" },
+    "at twelve": { time: "12:00" },
     "13": { time: "13:00" },
+    "thirteen": { time: "13:00" },
+    "at 13": { time: "13:00" },
+    "at thirteen": { time: "13:00" },
     "14": { time: "14:00" },
+    "fourteen": { time: "14:00" },
+    "at 14": { time: "14:00" },
+    "at fourteen": { time: "14:00" },
     "15": { time: "15:00" },
+    "fifteen": { time: "15:00" },
+    "at 15": { time: "15:00" },
+    "at fifteen": { time: "15:00" },
     "16": { time: "16:00" },
+    "sixteen": { time: "16:00" },
+    "at 16": { time: "16:00" },
+    "at sixteen": { time: "16:00" },
     "17": { time: "17:00" },
+    "seventeen": { time: "17:00" },
+    "at 17": { time: "17:00" },
+    "at seventeen": { time: "17:00" },
     "18": { time: "18:00" },
+    "eighteen": { time: "18:00" },
+    "at 18": { time: "18:00" },
+    "at eighteen": { time: "18:00" },
     "19": { time: "19:00" },
+    "nineteen": { time: "19:00" },
+    "at 19": { time: "19:00" },
+    "at nineteen": { time: "19:00" },
+    "20": { time: "20:00" },
+    "twenty": { time: "20:00" },
+    "at 20": { time: "20:00" },
+    "at twenty": { time: "20:00" },
 
 }
 
@@ -72,22 +112,6 @@ const boolean_grammar: {[index: string]: {agreement?: boolean, disagreement?: bo
     "I don't know": {uncertain: "unsure"},
     "probably": {uncertain: "unsure"},
 }
-
-/*const type_grammar: {[index: string]: {task?: string}} = {
-    "appointment": {task: "appointment"},
-    "shcedule an appointment": {task: "appointment"},
-    "shcedule appointment": {task: "appointment"},
-    "make an appointment": {task: "appointment"},
-    "make appointment": {task: "appointment"},
-
-
-    "timer": {task: "timer"},
-    "set a timer": {task: "timer"},
-    "set timer": {task: "timer"},
-
-    "to do item": {task: "to do item"},
-    "todo item": {task: "to do item"},
-    "item": {task: "to do item"},*/
 
 export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
     
@@ -142,8 +166,8 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
             initial: 'prompt',
             on:{
                 ENDSPEECH:[{
-                    cond: (context) => context.intentResult === 'todo_item',
-                    target: 'todo_item'},
+                    cond: (context) => context.intentResult === 'to_do_item',
+                    target: 'to_do_item'},
                     {cond: (context) => context.intentResult === 'appointment',
                     target: 'appointment'},
                     {cond: (context) => context.intentResult === 'timer',
@@ -154,9 +178,9 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                 prompt: {
                     entry: send((context) => ({
                         type: "SPEAK",
-                        value: `Let us proceed to ${context.task} then`}))},
+                        value: `Ok, let's see if I can help you with ${context.task}.`}))},
                 nomatch: {
-                    entry: say("Excuse me, I don't yet know such task"),
+                    entry: say("Excuse me, I haven't yet learned such task. Let's try again."),
                     on: {ENDSPEECH: '#make_a_choice'}
                         
                     }
@@ -169,16 +193,16 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
             on: {ENDSPEECH: 'choice_of_tool'},
             states:{
                 prompt:{
-                    entry: say("Welcome to the timer tool!")
+                    entry: say("Welcome to the timer tool! Sorry, this tool has not yet been developed.")
                 }
             }
         },
-        todo_item: {
+        to_do_item: {
             initial: 'prompt',
             on: {ENDSPEECH: 'choice_of_tool'},
             states:{
                 prompt:{
-                    entry: say("Welcome to the to do item tool!")
+                    entry: say("Welcome to the to do item tool! Sorry, this tool has not yet been developed.")
                 }
             }
         },
@@ -198,9 +222,8 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                     RECOGNISED: [{
                         cond: (context) => "person" in (grammar[context.recResult] || {}),
                         actions: assign((context) => { return { person: grammar[context.recResult].person } }),
-                        target: "day"
-
-                    },
+                        target: "day"},
+    
                     { target: ".nomatch" }]
                 },
                 states: {
@@ -211,11 +234,12 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                     ask: {
                         entry: listen()
                     },
-                    nomatch: {
-                        entry: say("Sorry I don't know them"),
-                        on: { ENDSPEECH: "prompt" }
+                    nomatch: { entry: send((context) => ({
+                            type: "SPEAK",
+                            value: `Sorry, I don't know them. Please choose someone from your contacts list.`})),
+                            on: {ENDSPEECH: "ask"}}
+        
                     }
-                }
             },
             day: {
                 initial: "prompt",
@@ -253,8 +277,8 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                         {cond: (context) => "disagreement" in (boolean_grammar[context.recResult] || {}),
                         target: "time"},
 
-                        {cond: (context) => "uncertain in" in (boolean_grammar[context.recResult] || {}),
-                        target: ".more_specific"},
+                        {cond: (context) => "uncertain" in (boolean_grammar[context.recResult] || {}),
+                        target: ".specific"},
 
                     {target:".nomatch"}]
 
@@ -268,10 +292,10 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                         entry: listen()
                     },
                     nomatch: {
-                        entry: say("Please be more specific."),
+                        entry: say("Sorry, I did not understand you this time."),
                     on: {ENDSPEECH: "ask"}
                     },
-                    more_specific: {
+                    specific: {
                         entry: say("please be more specific."),
                     on: {ENDSPEECH: "ask"},
                     }
@@ -310,7 +334,7 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                         target: "confirmation"},
                         {
                         cond: (context) => "disagreement" in (boolean_grammar[context.recResult] || {}),
-                        target: "who"},
+                        target: ".canceled"},
 
                     {target: ".nomatch"}]
                 },
@@ -325,6 +349,11 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                     ask: {
                         entry: listen()
                     },
+                    canceled: {
+                        entry: say("The appointment has been canceled."),
+                        on: {ENDSPEECH: '#make_a_choice'}
+
+                    },
                     nomatch: {
                         entry: say("Sorry, I don't understand. Please repeat"),
                         on: {ENDSPEECH: "ask"}}
@@ -338,8 +367,9 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                         target: "confirmation"},
                         {
                         cond: (context) => "disagreement" in (boolean_grammar[context.recResult] || {}),
-                        target: "who"},
-
+                        target: ".canceled"},
+                        {cond: (context) => "unsure" in (boolean_grammar[context.recResult] || {}),
+                        target: ".specific"},
                     {target: ".nomatch"}]
                 },
                 states:{
@@ -348,27 +378,52 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                             type: "SPEAK",
                             value:`Do you want me to create an appointment with ${context.person} on ${context.day} at ${context.time}?`})),
                             on: {ENDSPEECH: "ask"}
-
+                    },
+                    canceled: {
+                        entry: say("The appointment has been cancell\ed."),
+                        on: {ENDSPEECH: '#make_a_choice'}
                     },
                     ask: {
                         entry: listen()
                     },
+                    specific:{
+                        entry: say("Please be more specific."),
+                        on: {ENDSPEECH: 'ask'}
+                    },
                     nomatch: {
                         entry: say("Sorry, I don't understand. Please repeat"),
-                        on: {ENDSPEECH: "ask"}}
-                }
+                        on: {ENDSPEECH: "ask"}}}
             },
             confirmation: {
                 initial: "prompt" ,
                 on: {
-                    ENDSPEECH: "who"
+                     RECOGNISED: [{
+                        cond: (context) => "agreement" in (boolean_grammar[context.recResult] || {}),
+                        target: "to_do_item"},
+                        {
+                        cond: (context) => "disagreement" in (boolean_grammar[context.recResult] || {}),
+                        target: "#make_a_choice"},
+                        {
+                        cond: (context) => "unsure" in (boolean_grammar[context.recResult] || {}),
+                        target: ".specific"},
+
+                    {target: ".nomatch"}]
                 },
                 states: {
                     prompt: {
-                        entry: say("Your appointment has been created!")
+                        entry: say("Your appointment has been created! Would you like to add it to your to do list? "),
+                        on: {ENDSPEECH: 'ask'}
+                    },
+                    ask: {entry: listen(),
+                    },
+                    nomatch:{
+                        entry: say("Sorry, I did not get you.")
+                    },
+                    specific:{
+                        entry: say("Please be more specific"),
+                        on: {ENDSPEECH: 'ask'}
                     }
                 }
-
-            }
+            },
         }
 })
