@@ -1,5 +1,12 @@
 import { MachineConfig, send, Action } from "xstate";
-
+import { loadGrammar } from './runparser'
+import { parse } from './chartparser'
+import { grammar } from './grammars/houseGrammar'
+const gramm = loadGrammar(grammar)
+const input = "open the window"
+const prs = parse(input.split(/\s+/), gramm)
+const result = prs.resultsForRule(gramm.$root)[0]
+console.log(result)
 
 const sayColour: Action<SDSContext, SDSEvent> = send((context: SDSContext) => ({
     type: "SPEAK", value: `Repainting to ${context.recResult}`

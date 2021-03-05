@@ -11,6 +11,7 @@ interface SDSContext {
     time: string;
     task: any;
     intentResult: any;
+    HouseCommand: any
 
 
 }

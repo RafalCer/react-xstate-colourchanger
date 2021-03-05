@@ -1,11 +1,11 @@
 import { MachineConfig, send, Action, assign } from "xstate";
 
 
-function say(text: string): Action<SDSContext, SDSEvent> {
+export function say(text: string): Action<SDSContext, SDSEvent> {
     return send((_context: SDSContext) => ({ type: "SPEAK", value: text }))
 }
 
-function listen(): Action<SDSContext, SDSEvent> {
+export function listen(): Action<SDSContext, SDSEvent> {
     return send('LISTEN')
 }
 
@@ -133,7 +133,8 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
                 {target: ".nomatch"}]
             },
             states:{
-                prompt: { entry: say("What would you like to do?"),
+                prompt: {
+                        entry: say("What would you like to do?"),
                         on: {ENDSPEECH: 'ask'}
                 },
                 ask: {
