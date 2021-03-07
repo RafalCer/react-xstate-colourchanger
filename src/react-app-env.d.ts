@@ -22,4 +22,8 @@ type SDSEvent =
     | { type: 'ASRRESULT', value: string }
     | { type: 'ENDSPEECH' }
     | { type: 'LISTEN' }
-    | { type: 'SPEAK', value: string };
+    | { type: 'SPEAK', value: string }
+    | { type: 'TIMEOUT1' }
+    | { type: 'TIMEOUT2' }
+    | { type: 'TIMEOUT3' }
+    | { type: 'TIMEOUT4' }

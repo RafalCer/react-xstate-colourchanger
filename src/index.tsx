@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import { Machine, assign, send, State } from "xstate";
 import { useMachine, asEffect } from "@xstate/react";
 import { inspect } from "@xstate/inspect";
-import { dmMachine } from "./dmSmartHome";
+import { dmMachine } from "./dmAppointmentLab4";
 
 
 inspect({
@@ -44,7 +44,11 @@ const machine = Machine<SDSContext, any, SDSEvent>({
                                 assign((_context, event) => { return { recResult: event.value } })],
                             target: '.match'
                         },
-                        RECOGNISED: 'idle'
+                        RECOGNISED: 'idle',
+                        TIMEOUT1: 'idle',
+                        TIMEOUT2: 'idle',
+                        TIMEOUT3: 'idle',
+                        TIMEOUT4: 'idle', 
                     },
                     states: {
                         progress: {},

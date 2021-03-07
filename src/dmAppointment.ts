@@ -9,7 +9,6 @@ export function listen(): Action<SDSContext, SDSEvent> {
     return send('LISTEN')
 }
 
-
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 const rasaurl = 'https://rafalappointment.herokuapp.com/model/parse'
 const nluRequest = (text: string) =>
@@ -33,7 +32,7 @@ const grammar: { [index: string]: { person?: string, day?: string, time?: string
     "Bob": { person: "Bob the builder" },
     "Bob the builder": { person: "Bob the builder" },
     "Shrek": { person: "Shrek from the swamp" },
-    "Shrek from the swap": { person: "Shrek" },
+    "Shrek from the swap": { person: "Shrek from the swamp" },
 
     "on Monday": {day: "Monday" },
     "Monday": {day: "Monday" },
@@ -118,6 +117,7 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
     initial: 'start_point',
     states: {
         start_point:{
+            id: 'starting_poing',
             on: {
                 CLICK: 'choice_of_tool'
             }
@@ -134,7 +134,7 @@ export const dmMachine: MachineConfig<SDSContext, any, SDSEvent> = ({
             },
             states:{
                 prompt: {
-                        entry: say("What would you like to do?"),
+                    entry: say("What would you like to do?"),
                         on: {ENDSPEECH: 'ask'}
                 },
                 ask: {
