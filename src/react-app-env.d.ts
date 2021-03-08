@@ -11,7 +11,13 @@ interface SDSContext {
     time: string;
     task: any;
     intentResult: any;
-    HouseCommand: any
+    HouseCommand: any;
+    AppointmentCommand: any;
+    srgs_name: string;
+    srgs_day: string;
+    srgs_time: string;
+    srgs_help: string;
+    srgs_yes_no: string
 
 
 }
